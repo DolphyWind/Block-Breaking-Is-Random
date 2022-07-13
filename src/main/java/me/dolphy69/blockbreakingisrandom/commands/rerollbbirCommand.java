@@ -37,7 +37,7 @@ public class rerollbbirCommand implements CommandExecutor {
         {
             Material m = Material.values()[i];
             if(m != Material.AIR && m != Material.CAVE_AIR && m != Material.VOID_AIR)
-                _bbir.shuffledM○aterials.add(m);
+                _bbir.shuffledMaterials.add(m);
         }
         Collections.shuffle(_bbir.shuffledMaterials);
         _bbir.materialMap = zipToMap(_bbir.regularMaterials, _bbir.shuffledMaterials);
