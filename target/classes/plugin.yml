@@ -1,0 +1,13 @@
+name: BlockBreakingIsRandom
+version: '1.0'
+main: me.dolphy69.blockbreakingisrandom.BlockBreakingIsRandom
+api-version: 1.19
+authors: [ Dolphy69 ]
+description: Block Breaking Is Random
+commands:
+  startBBIR:
+    description: Start/Stop the game
+    usage: /<command>
+  rerollBBIR:
+    description: Reroll bbir
+    usage: /<command>
