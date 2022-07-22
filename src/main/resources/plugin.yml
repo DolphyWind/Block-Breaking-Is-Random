@@ -8,6 +8,8 @@ commands:
   startBBIR:
     description: Start/Stop the game
     usage: /<command>
+    default: op
   rerollBBIR:
     description: Rerandomize everything
     usage: /<command>
+    default: op
