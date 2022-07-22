@@ -15,4 +15,5 @@ public class SharedValues {
     public static List<Material> regularMaterials = new ArrayList<Material>();
     public static Map materialMap = new HashMap();
     public static BlockBreakingIsRandom plugin;
+    public static List<Material> illegalItems;
 }

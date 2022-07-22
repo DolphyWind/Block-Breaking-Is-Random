@@ -31,7 +31,7 @@ public class rerollbbirCommand implements CommandExecutor {
         for(int i = 0; i < Material.values().length; i++)
         {
             Material m = Material.values()[i];
-            if(m != Material.AIR && m != Material.CAVE_AIR && m != Material.VOID_AIR)
+            if(!SharedValues.illegalItems.contains(m))
                 SharedValues.shuffledMaterials.add(m);
         }
         Collections.shuffle(SharedValues.shuffledMaterials);

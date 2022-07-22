@@ -26,11 +26,22 @@ public class BlockBreakListener implements Listener {
         Block block = e.getBlock();
         Location loc = block.getLocation();
         World world = e.getPlayer().getWorld();
+        // Enable this if you want to drop items if original block has drops
+        //if(block.getDrops().isEmpty()) return;
         block.getDrops().clear();
 
         Material newMaterial = (Material) SharedValues.materialMap.get(block.getType());
-        ItemStack is = new ItemStack(newMaterial, 1);
-        world.dropItemNaturally(loc, is);
+
+        try
+        {
+            ItemStack is = new ItemStack(newMaterial, 1);
+            world.dropItemNaturally(loc, is);
+        }
+        catch (Exception exception)
+        {
+            System.out.println("An error occured whilst trying to spawn " + newMaterial.name());
+        }
+
     }
 
 }
