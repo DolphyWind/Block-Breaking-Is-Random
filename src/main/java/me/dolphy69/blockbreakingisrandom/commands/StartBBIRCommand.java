@@ -2,6 +2,7 @@ package me.dolphy69.blockbreakingisrandom.commands;
 
 import me.dolphy69.blockbreakingisrandom.BlockBreakingIsRandom;
 import me.dolphy69.blockbreakingisrandom.listeners.BlockBreakListener;
+import me.dolphy69.blockbreakingisrandom.other.SharedValues;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -14,13 +15,6 @@ import java.util.stream.IntStream;
 
 public class StartBBIRCommand implements CommandExecutor {
 
-    private BlockBreakingIsRandom _bbir;
-
-    public StartBBIRCommand(BlockBreakingIsRandom bbir)
-    {
-        _bbir = bbir;
-    }
-
     public static <K, V> Map<K, V> zipToMap(List<K> keys, List<V> values) {
         Iterator<K> keyIter = keys.iterator();
         Iterator<V> valIter = values.iterator();
@@ -31,29 +25,30 @@ public class StartBBIRCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 
-        if(!_bbir.isStarted)
+        if(!SharedValues.isStarted)
         {
-            _bbir.getServer().broadcastMessage(ChatColor.GREEN + "Game started. Type command again to stop the game.");
-            if(!_bbir.isRolled)
+            SharedValues.plugin.getServer().broadcastMessage(ChatColor.GREEN + "Game started. Type command again to stop the game.");
+
+            if(!SharedValues.isRolled)
             {
                 // Randomly rolls all materials except for AIR, CAVE_AIR and VOID_AIR
                 for(int i = 0; i < Material.values().length; i++)
                 {
                     Material m = Material.values()[i];
                     if(m != Material.AIR && m != Material.CAVE_AIR && m != Material.VOID_AIR)
-                        _bbir.shuffledMaterials.add(m);
+                        SharedValues.shuffledMaterials.add(m);
                 }
-                Collections.shuffle(_bbir.shuffledMaterials);
-                _bbir.materialMap = zipToMap(_bbir.regularMaterials, _bbir.shuffledMaterials);
+                Collections.shuffle(SharedValues.shuffledMaterials);
+                SharedValues.materialMap = zipToMap(SharedValues.regularMaterials, SharedValues.shuffledMaterials);
             }
 
-            _bbir.isRolled = true;
+            SharedValues.isRolled = true;
         }
 
         else
-            _bbir.getServer().broadcastMessage(ChatColor.RED + "Game stopped. Type command again to start the game.");
+            SharedValues.plugin.getServer().broadcastMessage(ChatColor.RED + "Game stopped. Type command again to start the game.");
 
-        _bbir.isStarted = !_bbir.isStarted;
+        SharedValues.isStarted = !SharedValues.isStarted;
         return true;
     }
 }

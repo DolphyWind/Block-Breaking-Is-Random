@@ -1,6 +1,7 @@
 package me.dolphy69.blockbreakingisrandom.commands;
 
 import me.dolphy69.blockbreakingisrandom.BlockBreakingIsRandom;
+import me.dolphy69.blockbreakingisrandom.other.SharedValues;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -15,12 +16,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class rerollbbirCommand implements CommandExecutor {
-    private BlockBreakingIsRandom _bbir;
-
-    public rerollbbirCommand(BlockBreakingIsRandom bbir)
-    {
-        _bbir = bbir;
-    }
 
     public static <K, V> Map<K, V> zipToMap(List<K> keys, List<V> values) {
         Iterator<K> keyIter = keys.iterator();
@@ -37,13 +32,13 @@ public class rerollbbirCommand implements CommandExecutor {
         {
             Material m = Material.values()[i];
             if(m != Material.AIR && m != Material.CAVE_AIR && m != Material.VOID_AIR)
-                _bbir.shuffledMaterials.add(m);
+                SharedValues.shuffledMaterials.add(m);
         }
-        Collections.shuffle(_bbir.shuffledMaterials);
-        _bbir.materialMap = zipToMap(_bbir.regularMaterials, _bbir.shuffledMaterials);
+        Collections.shuffle(SharedValues.shuffledMaterials);
+        SharedValues.materialMap = zipToMap(SharedValues.regularMaterials, SharedValues.shuffledMaterials);
 
-        _bbir.getServer().broadcastMessage(ChatColor.GREEN + "Rerolled!");
-        _bbir.isRolled = true;
+        SharedValues.plugin.getServer().broadcastMessage(ChatColor.GREEN + "Rerolled!");
+        SharedValues.isRolled = true;
 
         return true;
     }

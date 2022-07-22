@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Block Breaking Is Random" target="1.8" />
+      <module name="Block Breaking Is Random" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>

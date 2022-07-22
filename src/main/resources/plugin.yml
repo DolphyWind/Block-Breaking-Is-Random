@@ -9,5 +9,5 @@ commands:
     description: Start/Stop the game
     usage: /<command>
   rerollBBIR:
-    description: Reroll bbir
+    description: Rerandomize everything
     usage: /<command>
